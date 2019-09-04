@@ -1,13 +1,47 @@
-# IAgility Practice Session
+# Hospital Management System
 
-This Repository is for testing/practice
+This Repository is for IAgility NodeJS Practice session
 
-## Reservation API
+## Login API for JWT Token
 
-### GET API
+### POST API
+
+### URL
 
 ```
-api/reservation/get
+front/login
+```
+
+#### Request
+
+```
+{
+	"email" : "salmanbukhari@gmail.com",
+	"password" : "123456"
+}
+```
+
+#### Response
+
+```
+{
+    "result": {
+        "Role": [
+            "admin",
+            "doctor"
+        ],
+        "_id": "5d6d39e7e79c642d108b2a5b",
+        "FirstName": "Salman",
+        "LastName": "Bukhari",
+        "Email": "salmanbukhari@gmail.com",
+        "Password": "$2a$10$SlE1Z2jDs3puRnmsrG0/z.nApwv8zFsi9yEMial6GdyzInCUKpOli",
+        "LoginTime": "2019-09-02T15:48:55.801Z",
+        "createdAt": "2019-09-02T15:48:55.809Z",
+        "updatedAt": "2019-09-02T15:48:55.809Z",
+        "__v": 0
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiUm9sZSI6WyJhZG1pbiIsImRvY3RvciJdLCJfaWQiOiI1ZDZkMzllN2U3OWM2NDJkMTA4YjJhNWIiLCJGaXJzdE5hbWUiOiJTYWxtYW4iLCJMYXN0TmFtZSI6IkJ1a2hhcmkiLCJFbWFpbCI6InNhbG1hbmJ1a2hhcmlAZ21haWwuY29tIiwiUGFzc3dvcmQiOiIkMmEkMTAkU2xFMVoyakRzM3B1Um5tc3JHMC96Lm5BcHd2OHpGc2k5eUVNaWFsNkdkeXpJbkNVS3BPbGkiLCJMb2dpblRpbWUiOiIyMDE5LTA5LTAyVDE1OjQ4OjU1LjgwMVoiLCJjcmVhdGVkQXQiOiIyMDE5LTA5LTAyVDE1OjQ4OjU1LjgwOVoiLCJ1cGRhdGVkQXQiOiIyMDE5LTA5LTAyVDE1OjQ4OjU1LjgwOVoiLCJfX3YiOjB9LCJpYXQiOjE1Njc1OTk1MDAsImV4cCI6MTU2NzYyOTUwMH0.362yiXvjv3tFIilhRCZ9wYXjYpbM1GbVn6jYY1qjAUU"
+}
 ```
 
 ### POST API by ID

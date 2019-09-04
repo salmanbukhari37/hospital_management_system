@@ -31,3 +31,5 @@ dump/*
 !*/cache/index.html
 !*/cache/.htaccess
 
+frontend/
+
