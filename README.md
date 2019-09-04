@@ -44,39 +44,163 @@ front/login
 }
 ```
 
-### POST API by ID
+## Create User
+
+### POST API
+
+### URL
 
 ```
-api/reservation/get/one
+/api/create-user
 ```
 
 #### Request
 
 ```
 {
-	"id" : "5d5d48d853191c2d3898aa19"
+    "userData": {
+        "FirstName": "Ahmed",
+        "LastName": "Butt",
+        "Email": "ahmedbutts@gmail.com",
+        "Password": "123456",
+        "Role": [
+            "dispenser"
+        ]
+    }
 }
 ```
 
-### POST API - add reservation
+#### Response
 
 ```
-api/reservation/add
+{
+    "message": "User created successfully",
+    "result": {
+        "Role": [
+            "dispenser"
+        ],
+        "_id": "5d6fdc9e571c460b8866a56d",
+        "FirstName": "Ali",
+        "LastName": "Saeed",
+        "Email": "alisaeed@gmail.com",
+        "Password": "$2a$10$Qrq2UQUfG47IWXv.M2jzi.gqvyjNj4.qFTUykHu9zRCXldIKJVFCK",
+        "createdAt": "2019-09-04T15:47:42.367Z",
+        "updatedAt": "2019-09-04T15:47:42.367Z",
+        "__v": 0
+    }
+}
+```
+
+## Delete User
+
+### POST API
+
+### URL
+
+```
+/api/delete-user
 ```
 
 #### Request
 
 ```
 {
-	"name" : "Salman Bukhari",
-	"email" : "salmanbukahri37@gmail.com",
-	"room_type" : "4 Bed Rooms",
-	"arrival_date" : "08/26/2019",
-	"departure_date" : "08/30/2019",
-	"number_of_guest" : "4",
-	"free_pickup" : "Yes",
-	"flight_number" : "ERS345234",
-	"special_request" : "VIP Guest"
+	"userId" : "5d6d40dd0ad6cf410c3ad9ba"
+}
+```
+
+#### Response
+
+```
+{
+    "message": "Record deleted successfully",
+    "result": {
+        "Role": [
+            "dispenser"
+        ],
+        "_id": "5d6fdc9e571c460b8866a56d",
+        "FirstName": "Ali",
+        "LastName": "Saeed",
+        "Email": "alisaeed@gmail.com",
+        "Password": "$2a$10$Qrq2UQUfG47IWXv.M2jzi.gqvyjNj4.qFTUykHu9zRCXldIKJVFCK",
+        "createdAt": "2019-09-04T15:47:42.367Z",
+        "updatedAt": "2019-09-04T15:47:42.367Z",
+        "__v": 0
+    }
+}
+```
+
+## Create Patient Token
+
+### POST API
+
+### URL
+
+```
+/api/create-patient
+```
+
+#### Request
+
+```
+{
+	"patientData" : {
+		"PatientName" : "Ali Raza",
+		"Price" : 200
+	}
+}
+```
+
+#### Response
+
+```
+{
+    "message": "Patient created successfully",
+    "result": {
+        "TokenNumber": 5,
+        "_id": "5d6facd81381453a683c7d61",
+        "PatientName": "Ali Raza",
+        "Price": 200,
+        "UserId": "5d6d39e7e79c642d108b2a5b",
+        "createdAt": "2019-09-04T12:23:52.028Z",
+        "updatedAt": "2019-09-04T12:23:52.028Z",
+        "__v": 0
+    }
+}
+```
+
+## POST Patient (Get Patient Data by Patient Name)
+
+### POST API
+
+### URL
+
+```
+/api/get-patient
+```
+
+#### Request
+
+```
+{
+	"patientData" : {
+		"PatientName" : "Ali Raza",
+		"Price" : 200
+	}
+}
+```
+
+#### Response
+
+```
+{
+    "result": [
+        {
+            "_id": "Ali Raza",
+            "totalPatient": 1,
+            "totalAmount": 200
+        }
+    ]
 }
 ```
 
