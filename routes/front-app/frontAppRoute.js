@@ -4,7 +4,8 @@ const router = express.Router();
 // Login Controller
 const LoginController = require("../../controllers/Front/LoginController");
 
-router.get("/login", LoginController.Login);
+// Login using JWT
+router.post("/login", LoginController.Login);
 
 module.exports = {
   router

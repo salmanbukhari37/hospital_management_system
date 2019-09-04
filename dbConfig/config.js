@@ -5,7 +5,7 @@ const dbPath = "mongodb://localhost:27017/hospital_system";
 
 mongoose.connection.openUri(dbPath, { useNewUrlParser: true });
 
-mongoose.connection.on("connected", () => {
+var connection = mongoose.connection.on("connected", () => {
   console.log("Connected to DB");
 });
 

@@ -28,8 +28,7 @@ const userSchema = new Schema(
       require: true
     },
     LoginTime: {
-      type: Date,
-      require: true
+      type: Date
     }
   },
   {
@@ -38,17 +37,35 @@ const userSchema = new Schema(
 );
 //
 userSchema.pre("save", function(next) {
-  console.log("hey");
-  return false;
-  if (!user.isModified("Password")) return next();
-
-  const user = this;
-  // var user = this;
+  var user = this;
 
   // only hash the password if it has been modified ( or is new )
-  //   if (!user.isModified("Password")) {
-  //     return next();
-  //   }
+  if (!user.isModified("Password")) {
+    return next();
+  }
+
+  bcrypt.genSalt(SALT, (err, salt) => {
+    if (err) {
+      return next(err);
+    }
+
+    bcrypt.hash(user.Password, salt, null, (err, result) => {
+      if (err) {
+        return next(err);
+      }
+
+      user.Password = result;
+      next();
+    });
+  });
+});
+
+userSchema.pre("set", function(next) {
+  var user = this;
+
+  if (!user.isModified("Password")) {
+    return next();
+  }
 
   bcrypt.genSalt(SALT, (err, salt) => {
     if (err) return next(err);
@@ -62,33 +79,12 @@ userSchema.pre("save", function(next) {
   });
 });
 
-// userSchema.pre("findByIdAndUpdate", function(next) {
-//   var user = this;
+userSchema.methods.comparePassword = function(candidatePassword, cb) {
+  bcrypt.compare(candidatePassword, this.Password, (err, result) => {
+    if (err) return cb(err);
 
-//   this.findOneAndUpdate(
-//     {},
-//     { Password: encryptPassword(this.getUpdate().$set.password) }
-//   );
-//   next();
-
-//   //   bcrypt.genSalt(SALT, (err, salt) => {
-//   //     if (err) return next(err);
-
-//   //     bcrypt.hash(user.Password, salt, null, (err, result) => {
-//   //       if (err) return next(err);
-
-//   //       user.Password = result;
-//   //       next();
-//   //     });
-//   //   });
-// });
-
-// userSchema.methods.comparePassword = function(candidatePassword, cb) {
-//   bcrypt.compare(candidatePassword, this.Password, (err, result) => {
-//     if (err) return cb(err);
-
-//     cb(null, result);
-//   });
-// };
+    cb(null, result);
+  });
+};
 
 module.exports = mongoose.model("UserSchema", userSchema);
