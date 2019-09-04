@@ -208,17 +208,17 @@ const GetPatientBetweenDate = (req, res) => {
 const GetPatientByRole = (req, res) => {
   const request = req.body;
 
-  // const UserId = request.UserId;
+  const userId = request.UserId;
 
-  const matchQuery = {
-    $match: { UserId: "5d6d3a392d7fc931d8bbbc57" }
-  };
-
-  // const groupQuery = {
-  //   $group: { _id: UserId, TotalSale: { $sum: "$Price" } }
+  // const matchQuery = {
+  //   $match: { UserId: userId }
   // };
 
-  patientSchema.aggregate([matchQuery], (err, result) => {
+  const groupQuery = {
+    $group: { _id: userId, TotalSale: { $sum: "$Price" } }
+  };
+
+  patientSchema.aggregate([groupQuery], (err, result) => {
     if (result != "") {
       if (err) {
         console.log(err);

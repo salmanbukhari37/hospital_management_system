@@ -204,168 +204,22 @@ front/login
 }
 ```
 
-### POST API - update reservation
+## POST Patient (Get Patient Data by using between dates)
+
+### POST API
+
+### URL
 
 ```
-api/reservation/update
-```
-
-#### Request
-
-```
-{
-	"id" : "5d5d48d853191c2d3898aa19",
-	"updateData" : {
-		"email" : "salmanbukhariiiiiit@gmail.com",
-		"name" : "Mohammad Usman"
-	}
-}
-```
-
-### POST API - delete reservation
-
-```
-api/reservation/delete
+/api/get-patient-between-date
 ```
 
 #### Request
 
 ```
 {
-	"id" : "5d5d4a5dbacacd2c0c08858c"
-}
-```
-
-# Session - 26/08/2019
-
-## Student, Course, Enrollment API's
-
-## Student API
-
-### GET API
-
-#### URL
-
-```
-api/student/get
-```
-
-### POST API - Add Student
-
-#### URL
-
-```
-api/student/add
-```
-
-#### Request
-
-```
-{
-	"student" :
-	{
-		"StudentName" : "Salman Bukhari",
-		"MobileNumber" : "+92 333 4422233"
-	}
-}
-```
-
-## Course API
-
-### GET API
-
-#### URL
-
-```
-api/course/get
-```
-
-### POST API - Add Course
-
-#### URL
-
-```
-api/course/add
-```
-
-#### Request
-
-```
-{
-	"course" : {
-		"CourseCode" : "AES431",
-		"CourseName" : "Computer Sceince"
-	}
-}
-```
-
-## Enrollment API
-
-### GET API
-
-#### URL
-
-```
-api/enrollment/get
-```
-
-### POST API - Add Enrollment
-
-#### URL
-
-```
-api/enrollment/add
-```
-
-#### Request
-
-```
-{
-	"enrollment" : {
-		"StudentId" : "5d63bc2a2a149b48c410e613",
-		"CourseId" : "5d63bf9127630f1d2cdc54e4"
-	}
-}
-```
-
-# Session - 27/08/2019
-
-## Mongoose Concepts - Virtual, Bcrypt
-
-#### URL
-
-```
-api/parking/create/user
-```
-
-#### Request
-
-```
-{
-	"first_name" : "Salman",
-	"last_name" : "Bukhari",
-	"email" : "salmanbukhara@gmail.com",
-	"password" : "123456",
-	"phone_no" : "+92-333-4422114"
-}
-```
-
-Encrypt Password using bcrypt
-
-# Assignment Login Credentials check via BCrypt 27/08/2019
-
-#### URL
-
-```
-/api/parking/login
-```
-
-#### Request
-
-```
-{
-	"email" : "salmanbukharasi@gmail.com",
-	"password" : "123456"
+	"startDate" : "2019-09-03",
+	"endDate" : "2019-09-05"
 }
 ```
 
@@ -373,8 +227,185 @@ Encrypt Password using bcrypt
 
 ```
 {
-    "msg": "Logged in successfully",
-    "isMatch": true
+    "result": [
+        {
+            "TokenNumber": 1,
+            "_id": "5d6fa999aafa9b04d0118adc",
+            "PatientName": "Ahmed Raza",
+            "Price": 200,
+            "UserId": "5d6d3a392d7fc931d8bbbc57",
+            "createdAt": "2019-09-04T12:10:01.715Z",
+            "updatedAt": "2019-09-04T12:10:01.715Z",
+            "__v": 0
+        },
+        {
+            "TokenNumber": 2,
+            "_id": "5d6fab70f6537d55a4fc2b8b",
+            "PatientName": "Ahmed Raza",
+            "Price": 200,
+            "UserId": "5d6d3a392d7fc931d8bbbc57",
+            "createdAt": "2019-09-04T12:17:52.452Z",
+            "updatedAt": "2019-09-04T12:17:52.452Z",
+            "__v": 0
+        },
+        {
+            "TokenNumber": 3,
+            "_id": "5d6fab90f6537d55a4fc2b8c",
+            "PatientName": "Ahmed Raza",
+            "Price": 200,
+            "UserId": "5d6d3a392d7fc931d8bbbc57",
+            "createdAt": "2019-09-04T12:18:24.150Z",
+            "updatedAt": "2019-09-04T12:18:24.150Z",
+            "__v": 0
+        },
+        {
+            "TokenNumber": 4,
+            "_id": "5d6fabec738b213084e89d48",
+            "PatientName": "Ahmed Raza",
+            "Price": 200,
+            "UserId": "5d6d39e7e79c642d108b2a5b",
+            "createdAt": "2019-09-04T12:19:56.314Z",
+            "updatedAt": "2019-09-04T12:19:56.314Z",
+            "__v": 0
+        },
+        {
+            "TokenNumber": 5,
+            "_id": "5d6facd81381453a683c7d61",
+            "PatientName": "Ali Raza",
+            "Price": 200,
+            "UserId": "5d6d39e7e79c642d108b2a5b",
+            "createdAt": "2019-09-04T12:23:52.028Z",
+            "updatedAt": "2019-09-04T12:23:52.028Z",
+            "__v": 0
+        }
+    ],
+    "totalRecords": 5,
+    "totalTokens": 5
+}
+```
+
+## POST Patient (Get Patient Data by year only)
+
+### POST API
+
+### URL
+
+```
+/api/get-patient-by-year
+```
+
+#### Request
+
+```
+{
+	"year" : 2019
+}
+```
+
+#### Response
+
+```
+{
+    "result": [
+        {
+            "_id": "5d6fa999aafa9b04d0118adc",
+            "year": 2019
+        },
+        {
+            "_id": "5d6fab70f6537d55a4fc2b8b",
+            "year": 2019
+        },
+        {
+            "_id": "5d6fab90f6537d55a4fc2b8c",
+            "year": 2019
+        },
+        {
+            "_id": "5d6fabec738b213084e89d48",
+            "year": 2019
+        },
+        {
+            "_id": "5d6facd81381453a683c7d61",
+            "year": 2019
+        }
+    ]
+}
+```
+
+## POST Patient (Get Patient Data by month only)
+
+### POST API
+
+### URL
+
+```
+/api/get-patient-by-month
+```
+
+#### Request
+
+```
+{
+	"month" : 8
+}
+```
+
+#### Response
+
+```
+{
+    "result": [
+        {
+            "_id": "5d6fa999aafa9b04d0118adc",
+            "month": 9
+        },
+        {
+            "_id": "5d6fab70f6537d55a4fc2b8b",
+            "month": 9
+        },
+        {
+            "_id": "5d6fab90f6537d55a4fc2b8c",
+            "month": 9
+        },
+        {
+            "_id": "5d6fabec738b213084e89d48",
+            "month": 9
+        },
+        {
+            "_id": "5d6facd81381453a683c7d61",
+            "month": 9
+        }
+    ]
+}
+```
+
+## POST Patient (Get Patient Data by user id)
+
+### POST API
+
+### URL
+
+```
+/api/get-patient-by-month
+```
+
+#### Request
+
+```
+{
+	"UserId" : "5d6d410c86b81b4f9c61b832"
+}
+```
+
+#### Response
+
+```
+{
+    "result": [
+        {
+            "_id": "5d6d3a392d7fc931d8bbbc57",
+            "TotalSale": 1000
+        }
+    ]
 }
 ```
 
